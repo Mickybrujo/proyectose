@@ -1,20 +1,37 @@
-import React from 'react'
+import {useSwipeable} from 'react-swipeable'
 
-class Button extends React.Component{
-
-    render(){
-        let data = this.props.data
+function Button({number, pos, x,y, handleChange}) {
+    const handlers = useSwipeable({
+        onSwiped: (eventData) => console.log("User Swiped!", eventData),
+        onTap: (event) => console.log(event),
+        onSwipedLeft : (event) => {
+            handleChange(pos, pos - 1)
+        },
+        onSwipedRight: (event) => {
+            handleChange(pos, pos + 1)
+        },
+        onSwipedUp: (event) => {
+            handleChange(pos, pos - 3)
+        },
+        onSwipedDown: (event) => {
+            handleChange(pos, pos + 3)
+        },
+    });
+    if(!number){
         return(
             <>
-                <div className="numero">
-                    {
-                        data
-                    }
-                </div>
             </>
         )
     }
-
+    return(
+        <>
+                <div className="numero" {...handlers} style={{left: x, top: y}}>
+                    {
+                        number
+                    }
+                </div>
+            </>
+    )
 }
 
 export default Button;
