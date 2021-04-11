@@ -1,0 +1,40 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --numero-size: 100px;
+  --mark-size: calc(var(--numero-size) * 0.9);
+}
+
+body {
+  margin: 0;
+  background-color: burlywood;
+}
+
+.tablero {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.numero {
+  width: var(--numero-size);
+  height: var(--numero-size);
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  background-color: blanchedalmond;
+}
+
+
