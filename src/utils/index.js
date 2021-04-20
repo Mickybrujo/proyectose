@@ -15,7 +15,6 @@ export function getRandomSeq(seq = [1,2,3,4,5,6,7,8]){
         let position = Math.floor(Math.random() * seq.length)
         result.push(seq[position]);
         seq.splice(position, 1);
-        console.log(seq)
     }
     return result
 }

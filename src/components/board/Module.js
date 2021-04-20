@@ -1,73 +1,99 @@
 import React from 'react'
 import Button from 'components/board/Button'
-import {getRandomSeq} from 'utils'
+import { getRandomSeq } from 'utils'
 
 class BoardModule extends React.Component {
 
-    constructor(props){
+    option = 3
+    maxNumber = 0
+
+    constructor(props) {
         super(props)
         this.state = {
-            actualSeq : []
+            actualSeq: [],
+            tabs: 0
         }
-        this.handlePositionChange =  this.handlePositionChange.bind(this)
+        this.option = this.props.option ? this.props.option : 4
+        this.maxNumber = Math.pow(this.option, 2)
+        this.handleOnTab = this.handleOnTab.bind(this)
     }
 
-    componentDidMount(){
-        let seq = getRandomSeq()
-        let items = []
-        
-        seq.map((number)=> {
-            items.push(number)
-            
-        })
-        items.push(0)
+    componentDidMount() {
+        let numbers = []
+        for (var i = 1; i < this.maxNumber; ++i) {
+            numbers.push(i)
+        }
+        let seq = getRandomSeq(numbers)
+        seq.push(0)
         this.setState({
-            actualSeq : items
+            actualSeq: seq,
+            posZero: this.maxNumber - 1
         })
     }
 
-    handlePositionChange(actualPos, nextPos){
-        if(nextPos < 9 && nextPos >= 0){
-            let actualItem = this.state.actualSeq[actualPos]            
+    handleOnTab(position) {
+        let result = -1
+        let posiblePositions = [position - this.option, position + this.option, position + 1, position - 1]
+        for (let i = 0; i < 4; ++i) {
+            let nextPos = posiblePositions[i]
+            if (nextPos < this.maxNumber && nextPos >= 0) {
+                let number = this.state.actualSeq[nextPos]
+                if(number === 0){
+                    result = nextPos
+                    break;
+                }
+            }
+        }
+        if(result > -1){
             let actualSeq = this.state.actualSeq
-            actualSeq[actualPos] = this.state.actualSeq[nextPos]
-            actualSeq[nextPos] = actualItem
+            actualSeq[result] = actualSeq[position]
+            actualSeq[position] = 0
             this.setState({
-                actualSeq: actualSeq
+                actualSeq: actualSeq,
+                tabs: this.state.tabs + 1
             })
         }
     }
 
-
-    render(){
+    render() {
         let items = []
         let x = 0
         let y = 0
-        this.state.actualSeq.map((item, i) => {            
+        this.state.actualSeq.map((item, i) => {
             items.push(
                 <Button
                     pos={i}
                     number={item}
-                    handleChange={this.handlePositionChange}
+                    handleOnClick={this.handleOnTab}
                     key={`button-${i}`}
                     x={x}
-                    y={ y}
+                    y={y}
                 >
                 </Button>
             )
             x += 100
-            if((i+ 1) % 3 === 0){
+            if ((i + 1) % this.option === 0) {
                 x = 0
                 y += 100
             }
         })
-        return(
+        return (
             <>
-                <div className="tablero">
-                    {
-                        items
-                    }
+                <div className="container">
+                    <div className="columns">
+                        <div className="column">
+
+                        </div>
+                        <div className="column">
+                            <div className="tablero">
+                                {
+                                    items
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </>
         )
     }
