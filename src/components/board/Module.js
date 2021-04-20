@@ -1,11 +1,16 @@
 import React from 'react'
 import Button from 'components/board/Button'
-import { getRandomSeq } from 'utils'
+import Timer from 'components/board/Timer'
+
+import { getRandomSeq, twoArrEqual } from 'utils'
 
 class BoardModule extends React.Component {
 
     option = 3
     maxNumber = 0
+    width = 300
+    buttonWidth = 80
+    result = []
 
     constructor(props) {
         super(props)
@@ -13,18 +18,19 @@ class BoardModule extends React.Component {
             actualSeq: [],
             tabs: 0
         }
-        this.option = this.props.option ? this.props.option : 4
+        this.option = this.props.option ? this.props.option : 3
         this.maxNumber = Math.pow(this.option, 2)
         this.handleOnTab = this.handleOnTab.bind(this)
+        this.buttonWidth = this.width / this.option
     }
 
     componentDidMount() {
-        let numbers = []
         for (var i = 1; i < this.maxNumber; ++i) {
-            numbers.push(i)
+            this.result.push(i)
         }
-        let seq = getRandomSeq(numbers)
+        let seq = getRandomSeq(this.result)
         seq.push(0)
+        this.result.push(0)
         this.setState({
             actualSeq: seq,
             posZero: this.maxNumber - 1
@@ -38,13 +44,15 @@ class BoardModule extends React.Component {
             let nextPos = posiblePositions[i]
             if (nextPos < this.maxNumber && nextPos >= 0) {
                 let number = this.state.actualSeq[nextPos]
-                if(number === 0){
-                    result = nextPos
-                    break;
+                if (number === 0) {
+                    if ((nextPos) % this.option !== (this.option - 1) || (position) % this.option !== 0) {
+                        result = nextPos
+                        break;
+                    }
                 }
             }
         }
-        if(result > -1){
+        if (result > -1) {
             let actualSeq = this.state.actualSeq
             actualSeq[result] = actualSeq[position]
             actualSeq[position] = 0
@@ -68,24 +76,25 @@ class BoardModule extends React.Component {
                     key={`button-${i}`}
                     x={x}
                     y={y}
+                    width={this.buttonWidth}
                 >
                 </Button>
             )
-            x += 100
+            x += this.buttonWidth
             if ((i + 1) % this.option === 0) {
                 x = 0
-                y += 100
+                y += this.buttonWidth
             }
         })
         return (
             <>
                 <div className="container">
-                    <div className="columns">
-                        <div className="column">
-
-                        </div>
-                        <div className="column">
-                            <div className="tablero">
+                    <div className="columns is-multiline">
+                        <Timer
+                            taps={this.state.taps}
+                        ></Timer>
+                        <div className="column is-full">
+                            <div className="tablero" style={{ width: this.width, height: this.width }}>
                                 {
                                     items
                                 }

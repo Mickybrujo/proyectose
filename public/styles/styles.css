@@ -1,3 +1,253 @@
+
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+td:not([align]),
+th:not([align]) {
+  text-align: inherit;
+}
+
+html {
+  background-color: white;
+  font-size: 16px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  min-width: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+}
+
+article,
+aside,
+figure,
+footer,
+header,
+hgroup,
+section {
+  display: block;
+}
+
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+code,
+pre {
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: auto;
+  font-family: monospace;
+}
+
+body {
+  color: #4a4a4a;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+a {
+  color: #3273dc;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a strong {
+  color: currentColor;
+}
+
+a:hover {
+  color: #363636;
+}
+
+code {
+  background-color: whitesmoke;
+  color: #da1039;
+  font-size: 0.875em;
+  font-weight: normal;
+  padding: 0.25em 0.5em 0.25em;
+}
+
+hr {
+  background-color: whitesmoke;
+  border: none;
+  display: block;
+  height: 2px;
+  margin: 1.5rem 0;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+.title {
+  color: #363636;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.125;
+}
+
+.subtitle {
+  color: #4a4a4a;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.navbar {
+  padding-top: 0.5rem;
+  background-color: red;
+  color: white;
+  min-height: 3.25rem;
+  position: relative;
+  z-index: 30;
+}
+
+.column {
+  display: block;
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 0.75rem;
+  background-color: #3273dc;
+}
+@media screen and (max-width: 1079px) {
+  .column {
+    flex: none;
+    width: 50%;
+  }
+}
+.column.is-full {
+  flex: none;
+  width: 100%;
+}
+
+.columns {
+  width: 100%;
+  background-color: #da1039;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  margin-top: -0.75rem;
+}
+
+.columns:last-child {
+  margin-bottom: -0.75rem;
+}
+
+.columns:not(:last-child) {
+  margin-bottom: calc(1.5rem - 0.75rem);
+}
+
+.columns.is-centered {
+  justify-content: center;
+}
+
+.columns.is-multiline {
+  flex-wrap: wrap;
+}
+
+.columns.is-vcentered {
+  align-items: center;
+}
+
+@media screen and (min-width: 769px), print {
+  .columns:not(.is-desktop) {
+    display: flex;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .columns.is-desktop {
+    display: flex;
+  }
+}
+.text-centered {
+  align-content: center;
+  text-align: center;
+}
 *,
 *::after,
 *::before {
@@ -19,21 +269,30 @@ body {
   background-color: burlywood;
 }
 
+
+.head{
+  background-color: brown;
+  width: 100%;
+  position: relative;
+}
+
 .tablero {
-  display: table;
-  justify-content: center;
-  align-content: center;
-  justify-items: center;
+  display: flex;
+  width: 100%;
+  height: auto;
+  position: relative;
+  background-color: black;
+}
+
+.container{
+  display: flex;
   align-items: center;
-  grid-template-columns: repeat(3, auto);
 }
 
 .numero {
-  width: var(--numero-size);
-  height: var(--numero-size);
   border: 1px solid black;
-  display: flex;
   justify-content: center;
+  display: flex;
   align-items: center;
   position: absolute;
   cursor: pointer;

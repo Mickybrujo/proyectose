@@ -1,5 +1,5 @@
 
-function Button({number, pos, x,y, handleOnClick}) {
+function Button({number, pos, x,y, handleOnClick, width}) {
     if(!number){
         return(
             <>
@@ -8,7 +8,7 @@ function Button({number, pos, x,y, handleOnClick}) {
     }
     return(
         <>
-                <div className="numero" onClick={() => handleOnClick(pos)} style={{left: x, top: y}}>
+                <div className="column is-full numero" onClick={() => handleOnClick(pos)} style={{left: x, top: y, width : width, height: width}}>
                     {
                         number
                     }

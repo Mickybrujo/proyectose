@@ -10,13 +10,15 @@ class TimerModule extends React.Component {
     }
 
     componentDidMount(){
-        
+
     }
 
     render(){
         return(
             <>
-
+                <div className=" column is-full">
+                    as
+                </div>
             </>
         )
     }

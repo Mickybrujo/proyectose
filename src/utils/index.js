@@ -18,3 +18,7 @@ export function getRandomSeq(seq = [1,2,3,4,5,6,7,8]){
     }
     return result
 }
+
+export function twoArrEqual(a, b) { 
+    return a.sort().toString() == b.sort().toString() 
+}
