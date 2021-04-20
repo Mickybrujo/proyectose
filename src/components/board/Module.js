@@ -16,9 +16,9 @@ class BoardModule extends React.Component {
         super(props)
         this.state = {
             actualSeq: [],
-            tabs: 0
+            taps: 0
         }
-        this.option = this.props.option ? this.props.option : 3
+        this.option = this.props.option ? this.props.option : 4
         this.maxNumber = Math.pow(this.option, 2)
         this.handleOnTab = this.handleOnTab.bind(this)
         this.buttonWidth = this.width / this.option
@@ -58,34 +58,12 @@ class BoardModule extends React.Component {
             actualSeq[position] = 0
             this.setState({
                 actualSeq: actualSeq,
-                tabs: this.state.tabs + 1
+                taps: this.state.taps + 1
             })
         }
     }
 
-    render() {
-        let items = []
-        let x = 0
-        let y = 0
-        this.state.actualSeq.map((item, i) => {
-            items.push(
-                <Button
-                    pos={i}
-                    number={item}
-                    handleOnClick={this.handleOnTab}
-                    key={`button-${i}`}
-                    x={x}
-                    y={y}
-                    width={this.buttonWidth}
-                >
-                </Button>
-            )
-            x += this.buttonWidth
-            if ((i + 1) % this.option === 0) {
-                x = 0
-                y += this.buttonWidth
-            }
-        })
+    render() {       
         return (
             <>
                 <div className="container">
@@ -94,9 +72,21 @@ class BoardModule extends React.Component {
                             taps={this.state.taps}
                         ></Timer>
                         <div className="column is-full">
-                            <div className="tablero" style={{ width: this.width, height: this.width }}>
+                            <div className="tablero" style={{ width: this.width, height: this.width, gridTemplateColumns: `repeat(${this.option}, auto)` }}>
                                 {
-                                    items
+                                     this.state.actualSeq.map((item, i) => {
+                                        return(
+                                            <Button
+                                                pos={i}
+                                                number={item}
+                                                handleOnClick={this.handleOnTab}
+                                                key={`button-${i}`}
+                                                width={this.buttonWidth}
+                                            >
+                                            </Button>
+                                        )
+                                       
+                                    })
                                 }
                             </div>
                         </div>

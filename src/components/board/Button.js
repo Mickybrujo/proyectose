@@ -1,14 +1,14 @@
 
-function Button({number, pos, x,y, handleOnClick, width}) {
+function Button({number, pos, handleOnClick, width}) {
     if(!number){
         return(
-            <>
-            </>
+            <div className=" numero">
+            </div>
         )
     }
     return(
         <>
-                <div className="column is-full numero" onClick={() => handleOnClick(pos)} style={{left: x, top: y, width : width, height: width}}>
+                <div className=" numero" onClick={() => handleOnClick(pos)} style={{ width : width, height: width}}  >
                     {
                         number
                     }

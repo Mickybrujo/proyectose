@@ -188,7 +188,7 @@ img {
 }
 
 .column {
-  display: block;
+  display: inline-block;
   flex-basis: 0;
   flex-grow: 1;
   flex-shrink: 1;
@@ -208,7 +208,6 @@ img {
 
 .columns {
   width: 100%;
-  background-color: #da1039;
   margin-left: -0.75rem;
   margin-right: -0.75rem;
   margin-top: -0.75rem;
@@ -278,10 +277,15 @@ body {
 
 .tablero {
   display: flex;
-  width: 100%;
   height: auto;
   position: relative;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
   background-color: black;
+
 }
 
 .container{
@@ -291,10 +295,10 @@ body {
 
 .numero {
   border: 1px solid black;
-  justify-content: center;
   display: flex;
+  justify-content: center;
   align-items: center;
-  position: absolute;
+  position: relative;
   cursor: pointer;
   background-color: blanchedalmond;
 }
