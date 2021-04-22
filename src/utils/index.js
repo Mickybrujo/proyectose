@@ -20,5 +20,5 @@ export function getRandomSeq(seq = [1,2,3,4,5,6,7,8]){
 }
 
 export function twoArrEqual(a, b) { 
-    return a.sort().toString() == b.sort().toString() 
+    return a.toString() == b.sort().toString() 
 }

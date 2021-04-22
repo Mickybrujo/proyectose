@@ -16,7 +16,8 @@ class BoardModule extends React.Component {
         super(props)
         this.state = {
             actualSeq: [],
-            taps: 0
+            taps: 0,
+            win: false
         }
         this.option = this.props.option ? this.props.option : 4
         this.maxNumber = Math.pow(this.option, 2)
@@ -25,10 +26,20 @@ class BoardModule extends React.Component {
     }
 
     componentDidMount() {
-        for (var i = 1; i < this.maxNumber; ++i) {
-            this.result.push(i)
+        let numbers = []
+        if(!this.props.reverse){
+            for (let i = 1; i < this.maxNumber; ++i) {
+                this.result.push(i)
+                numbers.push(i)
+            }
         }
-        let seq = getRandomSeq(this.result)
+        else{
+            for (let i = this.maxNumber; i > 0; --i) {
+                this.result.push(i)
+                numbers.push(i)
+            }
+        }
+        let seq = getRandomSeq(numbers)
         seq.push(0)
         this.result.push(0)
         this.setState({
@@ -56,19 +67,29 @@ class BoardModule extends React.Component {
             let actualSeq = this.state.actualSeq
             actualSeq[result] = actualSeq[position]
             actualSeq[position] = 0
+            let win = twoArrEqual(actualSeq, this.result)
             this.setState({
+                win: win,
                 actualSeq: actualSeq,
                 taps: this.state.taps + 1
             })
         }
     }
 
-    render() {       
+    render() {      
+        if(this.state.win){
+            return(
+                <>
+                    
+                </>
+            )
+        } 
         return (
             <>
                 <div className="container">
                     <div className="columns is-multiline">
                         <Timer
+                            name={this.props.name}
                             taps={this.state.taps}
                         ></Timer>
                         <div className="column is-full">
