@@ -143,6 +143,10 @@ a:hover {
   color: #363636;
 }
 
+.button{
+  margin-left: 3px;
+  
+}
 code {
   background-color: whitesmoke;
   color: #da1039;
@@ -188,12 +192,9 @@ img {
 }
 
 .column {
-  display: inline-block;
-  flex-basis: 0;
-  flex-grow: 1;
   flex-shrink: 1;
   padding: 0.75rem;
-  background-color: #3273dc;
+  
 }
 @media screen and (max-width: 1079px) {
   .column {
@@ -226,7 +227,19 @@ img {
 }
 
 .columns.is-multiline {
-  flex-wrap: wrap;
+flex-wrap: wrap;
+background: rgb(158, 155, 155);
+border: 2px solid gray;
+width: 30%;
+top: 50%;
+left: 50%;
+justify-content: center;
+position: absolute;
+transform: translate(-50%, -50%);
+align-items: center;
+margin: 0 auto; 
+border-radius: 10px;
+
 }
 
 .columns.is-vcentered {
@@ -265,12 +278,25 @@ body {
   bottom: 0px;
   left: 0px;
   right: 0px;
-  background-color: burlywood;
+  background: #626262;
 }
 
+.field{
+  background: silver;
+  border: 1px solid #393939;
+  border-radius: 5px;
+  color: #393939;
+  font-size: 10px;
+  padding: 3px;
+  
+}
+
+.field input{
+  width: 100%;
+  outline: none;
+}
 
 .head{
-  background-color: brown;
   width: 100%;
   position: relative;
 }
@@ -284,7 +310,7 @@ body {
   align-content: center;
   justify-items: center;
   align-items: center;
-  background-color: black;
+  background-color: #303030;
 
 }
 
@@ -300,7 +326,8 @@ body {
   align-items: center;
   position: relative;
   cursor: pointer;
-  background-color: blanchedalmond;
+  background-color: #dfdfdf;
+  
 }
 
 
