@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from 'components/board/Button'
 import Timer from 'components/board/Timer'
-
+import Stats from 'components/board/Stats'
 import { getRandomSeq, twoArrEqual } from 'utils'
 
 class BoardModule extends React.Component {
@@ -22,11 +22,17 @@ class BoardModule extends React.Component {
         this.option = this.props.option ? this.props.option : 4
         this.maxNumber = Math.pow(this.option, 2)
         this.handleOnTab = this.handleOnTab.bind(this)
+        this.loadData = this.loadData.bind(this)
         this.buttonWidth = this.width / this.option
     }
 
     componentDidMount() {
+       this.loadData()
+    }
+
+    loadData(){
         let numbers = []
+
         if(!this.props.reverse){
             for (let i = 1; i < this.maxNumber; ++i) {
                 this.result.push(i)
@@ -34,7 +40,7 @@ class BoardModule extends React.Component {
             }
         }
         else{
-            for (let i = this.maxNumber; i > 0; --i) {
+            for (let i = this.maxNumber - 1; i > 0; --i) {
                 this.result.push(i)
                 numbers.push(i)
             }
@@ -67,6 +73,7 @@ class BoardModule extends React.Component {
             let actualSeq = this.state.actualSeq
             actualSeq[result] = actualSeq[position]
             actualSeq[position] = 0
+
             let win = twoArrEqual(actualSeq, this.result)
             this.setState({
                 win: win,
@@ -80,7 +87,14 @@ class BoardModule extends React.Component {
         if(this.state.win){
             return(
                 <>
-                    
+                    <Stats
+                        name={this.props.name}
+                        taps={this.state.taps}
+                        restart={()=>{
+                            this.setState({win: false})
+                            this.loadData()
+                        }}
+                    ></Stats>
                 </>
             )
         } 
