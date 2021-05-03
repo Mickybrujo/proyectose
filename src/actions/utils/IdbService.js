@@ -1,12 +1,11 @@
 import * as JsStore from 'jsstore';
 import { IDataBase, DATA_TYPE, ITable } from 'jsstore';
 import {workerPath} from 'configuration/config'
-
-
+import a from  "jsstore/dist/jsstore.worker.js"
 
 // This will ensure that we are using only one instance. 
 // Otherwise due to multiple instance multiple worker will be created.
-export const idbCon = new JsStore.Connection(new Worker(workerPath));
+export const idbCon = new JsStore.Connection(new Worker(a));
 export const dbname = 'Demo';
 
 const getDatabase = () => {

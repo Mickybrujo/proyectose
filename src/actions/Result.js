@@ -7,6 +7,13 @@ class Result extends Action {
     }
 
 
+    getResult(parameters, callback) {
+        return this.get(parameters, callback)
+    }
+
+    saveResult(parameters) {
+        return this.save(parameters)
+    }
 }
 
 export default Result

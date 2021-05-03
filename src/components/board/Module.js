@@ -17,7 +17,8 @@ class BoardModule extends React.Component {
         this.state = {
             actualSeq: [],
             taps: 0,
-            win: false
+            win: false,
+            time: null
         }
         this.option = this.props.option ? this.props.option : 4
         this.maxNumber = Math.pow(this.option, 2)
@@ -54,6 +55,8 @@ class BoardModule extends React.Component {
         })
     }
 
+
+
     handleOnTab(position) {
         let result = -1
         let posiblePositions = [position - this.option, position + this.option, position + 1, position - 1]
@@ -75,6 +78,15 @@ class BoardModule extends React.Component {
             actualSeq[position] = 0
 
             let win = twoArrEqual(actualSeq, this.result)
+            if(win){
+                this.props.saveResult({
+                    id: Math.floor(Math.random() * 10000000000),
+                    name: this.props.name,
+                    time: this.state.time,
+                    movements: this.state.taps + 1
+                })
+            }
+            
             this.setState({
                 win: win,
                 actualSeq: actualSeq,
@@ -104,6 +116,7 @@ class BoardModule extends React.Component {
                     <div className="columns is-multiline">
                         <Timer
                             name={this.props.name}
+                            setTime={(time) => {this.setState({time: time})}}
                             taps={this.state.taps}
                         ></Timer>
                         <div className="column is-full">

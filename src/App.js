@@ -4,6 +4,7 @@ import reducers from "./reducers";
 import thunk from 'redux-thunk';
 import Home from 'components/Home'
 
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const store = createStore(reducers, undefined, applyMiddleware(thunk));
 
@@ -11,8 +12,13 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
-
-        <Home></Home>
+        <Router>
+          <Switch>
+            <Route>
+              <Home></Home>
+            </Route>
+          </Switch>
+        </Router>
       </Provider>
 
     </div>

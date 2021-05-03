@@ -23,9 +23,15 @@ class TimerModule extends React.Component {
     }
 
     updateTime() {
+        let time = (Date.now() - this.state.startTime)
+        let callback = () => {
+            if(this.props.setTime){
+                this.props.setTime(time)
+            }
+        }
         this.setState({
-            diference: (Date.now() - this.state.startTime)
-        })
+            diference:  time
+        }, callback)
     }
 
     componentWillUnmount() {
